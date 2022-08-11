@@ -33,4 +33,18 @@ describe('SearchTrackContainer saga tests', () => {
       })
     );
   });
+
+  // it('should ensure that the action ERROR_GET_GITHUB_REPOS is dispatched when the api call fails', () => {
+  //   const res = getITunesTracksGenerator.next().value;
+  //   expect(res).toEqual(call(getTracks, trackName));
+  //   const errorResponse = {
+  //     errorMessage: 'There is an error while fetching the tracks data'
+  //   };
+  //   expect(getITunesTracksGenerator.next(apiResponseGenerator(false, errorResponse)).value).toEqual(
+  //     put({
+  //       type: searchTrackContainerTypes.ERROR_GET_ITUNES_TRACKS,
+  //       error: errorResponse
+  //     })
+  //   );
+  // });
 });

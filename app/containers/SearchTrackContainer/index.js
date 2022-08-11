@@ -39,6 +39,8 @@ const Container = styled.div`
 const TrackCustomCard = styled(Card)`
   && {
     width: 100%;
+    background: transparent;
+    border: none;
   }
 `;
 
@@ -92,6 +94,7 @@ export function SearchTrackContainer({
         defaultValue={searchedTrackName}
         onChange={(e) => debouncedHandleTrackSearch(e?.target?.value)}
         enterButton
+        autoFocus
         data-testid="search-bar"
         style={{ width: 400 }}
       />

@@ -7,7 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Card, Image } from 'antd';
+import { Card, Image, Button } from 'antd';
+// import { PlayCircleOutlined } from '@ant-design/icons';
 import If from '@components/If';
 import { isEmpty } from 'lodash';
 
@@ -33,6 +34,11 @@ export function RepoCard({ collectionName, trackName, artworkUrl100: url }) {
       <If condition={!isEmpty(collectionName)}>
         <CustomText>Collection Name: {collectionName}</CustomText>
       </If>
+
+      {/* <Tooltip title="play">
+        <Button icon={<PlayCircleOutlined />} size="auto" />
+      </Tooltip> */}
+      <Button type="primary">Play</Button>
     </CustomCard>
   );
 }
