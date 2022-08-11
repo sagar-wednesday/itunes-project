@@ -3,7 +3,7 @@ import { searchTrackContainerCreators, searchTrackContainerTypes } from './reduc
 import { getTracks } from '@app/services/repoApi';
 
 const { REQUEST_GET_ITUNES_TRACKS } = searchTrackContainerTypes;
-const { successGetItunesTracks, errorGetItunesTracks } = searchTrackContainerCreators;
+const { successGetItunesTracks, failureGetItunesTracks } = searchTrackContainerCreators;
 
 export function* getItunesTracks(action) {
   const response = yield call(getTracks, action.trackName);
@@ -11,7 +11,7 @@ export function* getItunesTracks(action) {
   if (ok) {
     yield put(successGetItunesTracks(data));
   } else {
-    yield put(errorGetItunesTracks(data));
+    yield put(failureGetItunesTracks(data));
   }
 }
 

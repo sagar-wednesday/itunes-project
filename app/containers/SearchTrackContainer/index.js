@@ -11,15 +11,16 @@ import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
+import styled from 'styled-components';
 import { Input, Card } from 'antd';
+import { debounce, get, isEmpty } from 'lodash';
+
 import { selectSearchTrackName, selectTracksData, selectTracksError } from './selectors';
-import { debounce, get, isEmpty, isNull, isUndefined } from 'lodash';
 import { searchTrackContainerCreators } from './reducer';
 import searchTrackContainerSaga from './saga';
 import If from '@app/components/If/index';
 import For from '@app/components/For/index';
 import TracksCard from '@app/components/TracksCard/index';
-import styled from 'styled-components';
 
 const MainBox = styled.div`
   display: flex;
@@ -50,11 +51,11 @@ export function SearchTrackContainer({
   dispatchTracksResult,
   dispatchClearTracksResult,
   tracksData,
-  tracksError,
+  // tracksError,
   searchedTrackName
 }) {
   useEffect(() => {
-    if (searchedTrackName && !tracksData?.items?.length) {
+    if (searchedTrackName && !tracksData?.tracks?.length) {
       dispatchTracksResult(searchedTrackName);
     }
     return () => {
@@ -63,7 +64,7 @@ export function SearchTrackContainer({
   }, []);
 
   const handleTrackSearch = (trackName) => {
-    if (trackName && trackName !== undefined) {
+    if (trackName) {
       dispatchTracksResult(trackName);
     } else {
       dispatchClearTracksResult();
@@ -73,14 +74,14 @@ export function SearchTrackContainer({
   const debouncedHandleTrackSearch = useCallback(debounce(handleTrackSearch, 500), []);
 
   const renderTracksList = () => {
-    const items = get(tracksData, 'results');
+    const tracks = get(tracksData, 'results');
     return (
-      <If condition={!isEmpty(items)}>
+      <If condition={!isEmpty(tracks)}>
         <TrackCustomCard>
           <For
-            of={items}
+            of={tracks}
             ParentComponent={Container}
-            renderItem={(item, index) => <TracksCard key={index} {...item} />}
+            renderItem={(item, index) => <TracksCard key={item.trackId} {...item} />}
           />
         </TrackCustomCard>
       </If>
@@ -98,7 +99,7 @@ export function SearchTrackContainer({
         data-testid="search-bar"
         style={{ width: 400 }}
       />
-      <If condition={!isUndefined(searchedTrackName) && !isNull(searchedTrackName)}> {renderTracksList()} </If>
+      {renderTracksList()}
     </MainBox>
   );
 }
@@ -108,7 +109,7 @@ SearchTrackContainer.propTypes = {
   dispatchClearTracksResult: PropTypes.func,
   tracksData: PropTypes.shape({
     totalMatchingTracks: PropTypes.number,
-    items: PropTypes.arrray
+    tracks: PropTypes.arrray
   }),
   searchedTrackName: PropTypes.string,
   trackIsPlaying: PropTypes.bool,
@@ -127,10 +128,10 @@ const mapStateToProps = createStructuredSelector({
 });
 
 function mapDispatchToProps(dispatch) {
-  const { requestGetItunesTracks, clearGetItunesTracks } = searchTrackContainerCreators;
+  const { requestGetItunesTracks, requestClearItunesTracks } = searchTrackContainerCreators;
   return {
     dispatchTracksResult: (trackName) => dispatch(requestGetItunesTracks(trackName)),
-    dispatchClearTracksResult: () => dispatch(clearGetItunesTracks())
+    dispatchClearTracksResult: () => dispatch(requestClearItunesTracks())
   };
 }
 

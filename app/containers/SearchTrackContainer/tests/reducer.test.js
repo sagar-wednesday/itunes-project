@@ -42,17 +42,17 @@ describe('SearchTrackContainer reducer tests', () => {
     const expectedResult = { ...initialState, tracksError: error };
     expect(
       searchTrackContainerReducer(initialState, {
-        type: searchTrackContainerTypes.ERROR_GET_ITUNES_TRACKS,
+        type: searchTrackContainerTypes.FAILURE_GET_ITUNES_TRACKS,
         error
       })
     ).toEqual(expectedResult);
   });
 
   it('should ensure that the error message is returned when fetching the tracks data is failed', () => {
-    const expectedResult = { ...initialState, tracksData: {}, searchedTrackName: null, tracksError: null };
+    const expectedResult = { ...initialState, tracksData: {}, searchedTrackName: undefined, tracksError: null };
     expect(
       searchTrackContainerReducer(initialState, {
-        type: searchTrackContainerTypes.CLEAR_GET_ITUNES_TRACKS
+        type: searchTrackContainerTypes.REQUEST_GET_ITUNES_TRACKS
       })
     ).toEqual(expectedResult);
   });
