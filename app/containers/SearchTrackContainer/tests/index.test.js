@@ -11,11 +11,11 @@ import { renderProvider, timeout } from '@utils/testUtils';
 import { SearchTrackContainerTest as SearchTrackContainer } from '../index';
 
 describe('<SearchTrackContainer /> container tests', () => {
-  let submitSpy;
+  // let submitSpy;
 
-  beforeEach(() => {
-    submitSpy = jest.fn();
-  });
+  // beforeEach(() => {
+  //   submitSpy = jest.fn();
+  // });
 
   it('should render and match the snapshot', () => {
     const { baseElement } = renderProvider(<SearchTrackContainer />);

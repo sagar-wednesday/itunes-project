@@ -1,4 +1,4 @@
-import { searchTrackContainerReducer, searchTrackContainerTypes, initialState } from '../reducer';
+import { searchTrackContainerReducer, initialState } from '../reducer';
 
 describe('SearchTrackContainer reducer tests', () => {
   it('should return the initial state by default', () => {

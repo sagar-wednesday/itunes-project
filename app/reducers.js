@@ -4,7 +4,6 @@
 
 import { combineReducers } from 'redux';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import homeContainerReducer from 'containers/HomeContainer/reducer';
 import searchTrackContainerReducer from 'containers/SearchTrackContainer/reducer';
 
 /**
@@ -14,7 +13,6 @@ export default function createReducer(injectedReducer = {}) {
   const rootReducer = combineReducers({
     ...injectedReducer,
     language: languageProviderReducer,
-    homeContainer: homeContainerReducer,
     searchTrackContainer: searchTrackContainerReducer
   });
 

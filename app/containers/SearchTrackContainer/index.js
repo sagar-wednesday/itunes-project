@@ -4,14 +4,14 @@
  *
  */
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage as T, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
-import { Input } from 'antd';
+import { Input, Card } from 'antd';
 import { selectSearchTrackName, selectTracksData, selectTracksError } from './selectors';
 import { debounce, get, isEmpty, isNull, isUndefined } from 'lodash';
 import { searchTrackContainerCreators } from './reducer';
@@ -20,7 +20,6 @@ import If from '@app/components/If/index';
 import For from '@app/components/For/index';
 import TracksCard from '@app/components/TracksCard/index';
 import styled from 'styled-components';
-import { CustomCard } from '../HomeContainer/index';
 
 const MainBox = styled.div`
   display: flex;
@@ -37,7 +36,7 @@ const Container = styled.div`
   }
 `;
 
-const TrackCustomCard = styled(CustomCard)`
+const TrackCustomCard = styled(Card)`
   && {
     width: 100%;
   }
