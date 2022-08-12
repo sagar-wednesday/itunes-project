@@ -19,7 +19,7 @@ describe('SearchTrackContainer saga tests', () => {
     );
   });
 
-  it('should ensure that the action SUCCESS_GET_GITHUB_REPOS is dispatched when the api call succeeds', () => {
+  it('should ensure that the action SUCCESS_GET_ITUNES_TRACKS is dispatched when the api call succeeds', () => {
     trackName = 'sol';
     getITunesTracksGenerator = getItunesTracks({ trackName });
     const res = getITunesTracksGenerator.next().value;
@@ -35,7 +35,7 @@ describe('SearchTrackContainer saga tests', () => {
     );
   });
 
-  it('should ensure that the action FAILURE_GET_GITHUB_REPOS is dispatched when the api call fails', () => {
+  it('should ensure that the action FAILURE_GET_ITUNES_TRACKS is dispatched when the api call fails', () => {
     trackName = 'sol';
     getITunesTracksGenerator = getItunesTracks({ trackName });
     const res = getITunesTracksGenerator.next().value;

@@ -22,13 +22,13 @@ import If from '@app/components/If/index';
 import For from '@app/components/For/index';
 import TracksCard from '@app/components/TracksCard/index';
 
-const MainBox = styled.div`
+const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Container = styled.div`
+const TrackCardContainer = styled.div`
   && {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -80,7 +80,7 @@ export function SearchTrackContainer({
         <TrackCustomCard>
           <For
             of={tracks}
-            ParentComponent={Container}
+            ParentComponent={TrackCardContainer}
             renderItem={(item, index) => <TracksCard key={item.trackId} {...item} />}
           />
         </TrackCustomCard>
@@ -89,7 +89,7 @@ export function SearchTrackContainer({
   };
 
   return (
-    <MainBox>
+    <MainContainer>
       <Search
         placeholder="search track"
         defaultValue={searchedTrackName}
@@ -100,7 +100,7 @@ export function SearchTrackContainer({
         style={{ width: 400 }}
       />
       {renderTracksList()}
-    </MainBox>
+    </MainContainer>
   );
 }
 
