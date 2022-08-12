@@ -5,23 +5,13 @@ describe('SearchTrackContainer reducer tests', () => {
     expect(searchTrackContainerReducer(undefined, {})).toEqual(initialState);
   });
 
-  // it('should return the updated state when an action of type DEFAULT is dispatched', () => {
-  //   const expectedResult = { ...initialState, somePayLoad: 'Mohammed Ali Chherawalla' };
-  //   expect(
-  //     searchTrackContainerReducer(initialState, {
-  //       type: searchTrackContainerTypes.DEFAULT_ACTION,
-  //       somePayLoad: 'Mohammed Ali Chherawalla'
-  //     })
-  //   ).toEqual(expectedResult);
-  // });
-
   it('should return the initial state when an action of type Requesting to fetch the tracks data', () => {
-    const data = { trackName: 'sol' };
-    const expectedResult = { ...initialState, tracksData: {}, searchedTrackName: undefined };
+    const trackName = null;
+    const expectedResult = { ...initialState, tracksData: {}, searchedTrackName: null };
     expect(
       searchTrackContainerReducer(initialState, {
         type: searchTrackContainerTypes.REQUEST_GET_ITUNES_TRACKS,
-        data
+        trackName
       })
     ).toEqual(expectedResult);
   });
@@ -49,10 +39,10 @@ describe('SearchTrackContainer reducer tests', () => {
   });
 
   it('should ensure that the error message is returned when fetching the tracks data is failed', () => {
-    const expectedResult = { ...initialState, tracksData: {}, searchedTrackName: undefined, tracksError: null };
+    const expectedResult = { ...initialState, tracksData: {}, searchedTrackName: null, tracksError: null };
     expect(
       searchTrackContainerReducer(initialState, {
-        type: searchTrackContainerTypes.REQUEST_GET_ITUNES_TRACKS
+        type: searchTrackContainerTypes.REQUEST_CLEAR_ITUNES_TRACKS
       })
     ).toEqual(expectedResult);
   });

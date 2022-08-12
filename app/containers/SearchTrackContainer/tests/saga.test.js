@@ -10,7 +10,7 @@ import { apiResponseGenerator } from '@app/utils/testUtils';
 
 describe('SearchTrackContainer saga tests', () => {
   const generator = searchTrackContainerSaga();
-  const trackName = '';
+  let trackName = '';
   let getITunesTracksGenerator = getItunesTracks({ trackName });
 
   it('should start task to watch for REQUEST_GET_ITUNES_TRACKS action', () => {
@@ -20,6 +20,7 @@ describe('SearchTrackContainer saga tests', () => {
   });
 
   it('should ensure that the action SUCCESS_GET_GITHUB_REPOS is dispatched when the api call succeeds', () => {
+    trackName = 'sol';
     getITunesTracksGenerator = getItunesTracks({ trackName });
     const res = getITunesTracksGenerator.next().value;
     expect(res).toEqual(call(getTracks, trackName));
@@ -34,17 +35,19 @@ describe('SearchTrackContainer saga tests', () => {
     );
   });
 
-  // it('should ensure that the action ERROR_GET_GITHUB_REPOS is dispatched when the api call fails', () => {
-  //   const res = getITunesTracksGenerator.next().value;
-  //   expect(res).toEqual(call(getTracks, trackName));
-  //   const errorResponse = {
-  //     errorMessage: 'There is an error while fetching the tracks data'
-  //   };
-  //   expect(getITunesTracksGenerator.next(apiResponseGenerator(false, errorResponse)).value).toEqual(
-  //     put({
-  //       type: searchTrackContainerTypes.ERROR_GET_ITUNES_TRACKS,
-  //       error: errorResponse
-  //     })
-  //   );
-  // });
+  it('should ensure that the action FAILURE_GET_GITHUB_REPOS is dispatched when the api call fails', () => {
+    trackName = 'sol';
+    getITunesTracksGenerator = getItunesTracks({ trackName });
+    const res = getITunesTracksGenerator.next().value;
+    expect(res).toEqual(call(getTracks, trackName));
+    const errorResponse = {
+      errorMessage: 'There is an error while fetching the tracks data'
+    };
+    expect(getITunesTracksGenerator.next(apiResponseGenerator(false, errorResponse)).value).toEqual(
+      put({
+        type: searchTrackContainerTypes.FAILURE_GET_ITUNES_TRACKS,
+        error: errorResponse
+      })
+    );
+  });
 });
