@@ -4,7 +4,6 @@ import camelCase from 'lodash/camelCase';
 import { mapKeysDeep } from './index';
 
 const apiClients = {
-  github: null,
   iTunes: null,
   default: null
 };
@@ -15,7 +14,7 @@ export const generateApiClient = (type = 'iTunes') => {
       apiClients[type] = createApiClientWithTransForm(process.env.ITUNES_SEARCH_URL);
       return apiClients[type];
     default:
-      apiClients.default = createApiClientWithTransForm(process.env.GITHUB_URL);
+      apiClients[type] = createApiClientWithTransForm(process.env.ITUNES_SEARCH_URL);
       return apiClients.default;
   }
 };
