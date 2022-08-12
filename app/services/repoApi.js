@@ -1,4 +1,5 @@
 import { generateApiClient } from '@utils/apiUtils';
-const repoApi = generateApiClient('github');
 
-export const getRepos = (repoName) => repoApi.get(`/search/repositories?q=${repoName}`);
+const tracksApi = generateApiClient('iTunes');
+
+export const getTracks = (trackName) => tracksApi.get(`/search?term=${trackName}`);
