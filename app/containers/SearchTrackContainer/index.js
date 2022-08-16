@@ -21,6 +21,7 @@ import searchTrackContainerSaga from './saga';
 import If from '@app/components/If/index';
 import For from '@app/components/For/index';
 import TracksCard from '@app/components/TracksCard/index';
+import { colors } from '@themes';
 
 const MainContainer = styled.div`
   display: flex;
@@ -32,7 +33,8 @@ const TrackCardContainer = styled.div`
   && {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 100%;
+    gap: 2rem;
+    width: 88%;
     margin: 0 auto;
   }
 `;
@@ -42,18 +44,50 @@ const TrackCustomCard = styled(Card)`
     width: 100%;
     background: transparent;
     border: none;
-  }
-
-  span {
-    background-color: red;
+    margin-top: 3rem;
   }
 `;
 
 const { Search } = Input;
 
 const CustomSearch = styled(Search)`
-  &.ant-input {
-    background-color: transparent;
+  && {
+    background-color: ${colors.text};
+    /* border-bottom: 1px solid ${colors.secondary}; */
+    border-radius: 1rem;
+
+    span.ant-input-wrapper {
+      input.ant-input {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        /* border-bottom: 1px solid ${colors.secondary}; */
+        color: ${colors.secondary};
+        letter-spacing: 0.2px;
+        caret-color: ${colors.secondary};
+        font-size: 1rem;
+        margin-left: 1rem;
+
+        &::placeholder {
+          color: ${colors.secondary};
+        }
+
+        &:focus {
+          outline: none !important;
+        }
+      }
+
+      span.ant-input-group-addon {
+        background: transparent;
+
+        button.ant-input-search-button {
+          background-color: transparent;
+          border: none;
+          color: ${colors.secondary} !important;
+          padding-bottom: 0.25rem;
+        }
+      }
+    }
   }
 `;
 
@@ -115,11 +149,13 @@ export function SearchTrackContainer({
   return (
     <MainContainer>
       <CustomSearch
+        type="primary"
         placeholder="search track"
         defaultValue={searchedTrackName}
         onChange={(e) => debouncedHandleTrackSearch(e?.target?.value)}
-        enterButton
         autoFocus
+        role="primary"
+        bordered={false}
         data-testid="search-bar"
         style={{ width: 400 }}
       />

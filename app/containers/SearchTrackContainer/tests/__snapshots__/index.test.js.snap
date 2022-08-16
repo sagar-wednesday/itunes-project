@@ -7,24 +7,25 @@ exports[`<SearchTrackContainer /> container tests should render and match the sn
       class="SearchTrackContainer__MainContainer-sc-71k6aw-0 kpKGmX"
     >
       <span
-        class="ant-input-group-wrapper ant-input-search ant-input-search-with-button SearchTrackContainer__CustomSearch-sc-71k6aw-3 hbDixG"
+        class="ant-input-group-wrapper ant-input-search SearchTrackContainer__CustomSearch-sc-71k6aw-3 gwbYxm"
         style="width: 400px;"
       >
         <span
           class="ant-input-wrapper ant-input-group"
         >
           <input
-            class="ant-input"
+            class="ant-input ant-input-borderless"
             data-testid="search-bar"
             placeholder="search track"
-            type="text"
+            role="primary"
+            type="primary"
             value=""
           />
           <span
             class="ant-input-group-addon"
           >
             <button
-              class="ant-btn ant-btn-primary ant-input-search-button"
+              class="ant-btn ant-btn-icon-only ant-input-search-button"
               type="button"
             >
               <span

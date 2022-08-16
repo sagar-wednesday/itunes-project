@@ -4,7 +4,7 @@ exports[`<Header /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <header
-      class="Header__StyledHeader-wp2jxc-0 jLYkpu"
+      class="Header__StyledHeader-wp2jxc-0 jbgefc"
       data-testid="header"
     >
       <img
@@ -13,7 +13,7 @@ exports[`<Header /> should render and match the snapshot 1`] = `
         src="IMAGE_MOCK"
       />
       <p
-        class="Header__Title-wp2jxc-2 bkjpmc"
+        class="Header__Title-wp2jxc-2 hbUOYi"
       >
         Wednesday Solutions
       </p>

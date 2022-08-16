@@ -11,7 +11,7 @@ import { colors } from '@themes';
 import logo from '@images/icon-512x512.png';
 
 const StyledHeader = styled.header`
-  padding: 5rem 6rem;
+  padding: 3rem 6rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -25,7 +25,7 @@ const Logo = styled.img`
 `;
 
 const Title = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
     'Helvetica Neue', sans-serif;
