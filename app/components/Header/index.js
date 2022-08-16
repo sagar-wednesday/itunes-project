@@ -13,12 +13,13 @@ import logo from '@images/icon-512x512.png';
 const StyledHeader = styled.header`
   padding: 5rem 6rem;
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 2rem;
   align-items: center;
 `;
 
 const Logo = styled.img`
-  height: 3rem;
+  height: 4rem;
   width: auto;
   opacity: 0.9;
 `;

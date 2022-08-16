@@ -4,12 +4,12 @@ exports[`<Header /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <header
-      class="Header__StyledHeader-wp2jxc-0 lnXqb"
+      class="Header__StyledHeader-wp2jxc-0 jLYkpu"
       data-testid="header"
     >
       <img
         alt="logo"
-        class="Header__Logo-wp2jxc-1 SRvwA"
+        class="Header__Logo-wp2jxc-1 hfVwon"
         src="IMAGE_MOCK"
       />
       <p

@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
@@ -43,17 +43,28 @@ const TrackCustomCard = styled(Card)`
     background: transparent;
     border: none;
   }
+
+  span {
+    background-color: red;
+  }
 `;
 
 const { Search } = Input;
+
+const CustomSearch = styled(Search)`
+  &.ant-input {
+    background-color: transparent;
+  }
+`;
 
 export function SearchTrackContainer({
   dispatchTracksResult,
   dispatchClearTracksResult,
   tracksData,
-  // tracksError,
   searchedTrackName
 }) {
+  const [currentTrack, setCurrentTrack] = useState(null);
+
   useEffect(() => {
     if (searchedTrackName && !tracksData?.tracks?.length) {
       dispatchTracksResult(searchedTrackName);
@@ -73,15 +84,28 @@ export function SearchTrackContainer({
 
   const debouncedHandleTrackSearch = useCallback(debounce(handleTrackSearch, 500), []);
 
+  const tracks = get(tracksData, 'results');
+
+  const handleGlobalClick = (ref) => {
+    setCurrentTrack(ref);
+    const trackPaused = currentTrack?.current?.paused;
+    if (!trackPaused && ref?.current.src !== currentTrack?.current.src) {
+      currentTrack?.current?.pause();
+    }
+  };
+
+  useEffect(() => {
+    handleGlobalClick;
+  }, []);
+
   const renderTracksList = () => {
-    const tracks = get(tracksData, 'results');
     return (
-      <If condition={!isEmpty(tracks)}>
+      <If condition={!isEmpty(tracks)} otherwise={null}>
         <TrackCustomCard>
           <For
             of={tracks}
             ParentComponent={TrackCardContainer}
-            renderItem={(item, index) => <TracksCard key={item.trackId} {...item} />}
+            renderItem={(item, index) => <TracksCard key={index} handleGlobalClick={handleGlobalClick} {...item} />}
           />
         </TrackCustomCard>
       </If>
@@ -90,7 +114,7 @@ export function SearchTrackContainer({
 
   return (
     <MainContainer>
-      <Search
+      <CustomSearch
         placeholder="search track"
         defaultValue={searchedTrackName}
         onChange={(e) => debouncedHandleTrackSearch(e?.target?.value)}
