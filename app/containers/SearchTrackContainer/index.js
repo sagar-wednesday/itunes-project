@@ -126,10 +126,6 @@ export function SearchTrackContainer({
     }
   };
 
-  useEffect(() => {
-    handleGlobalClick;
-  }, []);
-
   const renderTracksList = () => {
     return (
       <If condition={!isEmpty(tracks)} otherwise={null}>
@@ -137,7 +133,19 @@ export function SearchTrackContainer({
           <For
             of={tracks}
             ParentComponent={TrackCardContainer}
-            renderItem={(item, index) => <TracksCard key={index} handleGlobalClick={handleGlobalClick} {...item} />}
+            renderItem={(item, index) => (
+              <TracksCard
+                key={index}
+                handleGlobalClick={handleGlobalClick}
+                collectionName={item.collectionName}
+                trackName={item.trackName}
+                imgUrl={item.artworkUrl100}
+                previewUrl={item.previewUrl}
+                tags={item.kind}
+                trackId={item.trackId}
+                {...item}
+              />
+            )}
           />
         </TrackCustomCard>
       </If>

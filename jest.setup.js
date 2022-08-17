@@ -36,7 +36,7 @@ Object.defineProperty(window, 'matchMedia', {
 
 global.window.HTMLMediaElement.prototype._mock = {
   paused: true,
-  duration: NaN,
+  duration: 500,
   _loaded: false,
   // Emulates the audio file loading
   _load: function audioInit(audio) {

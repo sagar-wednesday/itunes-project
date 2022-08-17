@@ -151,15 +151,7 @@ const CustomTags = styled.span`
 
 // --------TracksCard Component--------------
 
-export function TracksCard({
-  collectionName,
-  trackName,
-  artworkUrl100: imgUrl,
-  previewUrl,
-  handleGlobalClick,
-  kind: tags,
-  trackId
-}) {
+export function TracksCard({ collectionName, trackName, imgUrl, previewUrl, handleGlobalClick, tags, trackId }) {
   const audioRef = useRef(null);
   const [playTrack, setPlayTrack] = useState(false);
   // const history = useHistory();
@@ -167,8 +159,8 @@ export function TracksCard({
   const handlePlayPause = (e) => {
     e.preventDefault();
 
-    const trackPaused = audioRef.current?.paused;
-    if (trackPaused) {
+    const isPaused = audioRef.current?.paused;
+    if (isPaused) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
@@ -214,10 +206,10 @@ export function TracksCard({
 TracksCard.propTypes = {
   collectionName: PropTypes.string,
   trackName: PropTypes.string,
-  artworkUrl100: PropTypes.string,
+  imgUrl: PropTypes.string,
   previewUrl: PropTypes.string,
   handleGlobalClick: PropTypes.func,
-  kind: PropTypes.string,
+  tags: PropTypes.string,
   trackId: PropTypes.number
 };
 
