@@ -12,7 +12,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
       src="IMAGE_MOCK"
     />
     <p
-      class="Header__Title-wp2jxc-2 hbUOYi"
+      class="Header__Title-wp2jxc-2 cLyDmI"
     >
       Wednesday Solutions
     </p>

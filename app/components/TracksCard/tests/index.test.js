@@ -22,8 +22,8 @@ describe('<TracksCard />', () => {
 
   it('should display play button', () => {
     const { getByRole } = renderProvider(<TracksCard handleGlobalClick={handleGlobalClickSpy} />);
-    const playBtn = getByRole('button', { name: /play/i });
-    expect(playBtn).toHaveTextContent(/play/i);
+    const playButton = getByRole('button', { name: /play/i });
+    expect(playButton).toHaveTextContent(/play/i);
   });
 
   it('should display pause button on clicking the play button', async () => {
@@ -32,11 +32,11 @@ describe('<TracksCard />', () => {
     const { getByRole } = renderProvider(
       <TracksCard previewUrl={previewUrl} handleGlobalClick={handleGlobalClickSpy} />
     );
-    const playBtn = getByRole('button', { name: /play/i });
-    expect(playBtn).toHaveTextContent(/play/i);
-    fireEvent.click(playBtn, { onclick: handlePlayPauseSpy() });
+    const playButton = getByRole('button', { name: /play/i });
+    expect(playButton).toHaveTextContent(/play/i);
+    fireEvent.click(playButton, { onclick: handlePlayPauseSpy() });
     await timeout(500);
-    expect(playBtn).toHaveTextContent(/pause/i);
+    expect(playButton).toHaveTextContent(/pause/i);
   });
 
   it('should call handlePlayPause on clicking the play/pause button', async () => {
@@ -45,16 +45,16 @@ describe('<TracksCard />', () => {
     const handlePlayPauseSpy = jest.fn();
 
     const { getByRole, getByTestId } = renderProvider(<TracksCard handleGlobalClick={handleGlobalClickSpy} />);
-    const playBtn = getByRole('button', { name: /play/i });
+    const playButton = getByRole('button', { name: /play/i });
 
     audio = getByTestId('trackAudio');
 
-    fireEvent.click(playBtn, { onclick: handlePlayPauseSpy() });
+    fireEvent.click(playButton, { onclick: handlePlayPauseSpy() });
     await timeout(500);
 
     expect(handleGlobalClickSpy).toHaveBeenCalledWith({ current: audio });
 
-    fireEvent.click(playBtn, { onclick: handlePlayPauseSpy() });
+    fireEvent.click(playButton, { onclick: handlePlayPauseSpy() });
     await timeout(500);
 
     expect(handlePlayPauseSpy).toHaveBeenCalled();

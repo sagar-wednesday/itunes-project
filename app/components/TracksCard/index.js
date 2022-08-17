@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { Card, Image, Button } from 'antd';
 import { isEmpty } from 'lodash';
 import If from '@components/If';
-import { colors } from '@themes';
+import { colors, fonts } from '@themes';
 // import { useHistory } from 'react-router-dom';
 
 const CustomCard = styled(Card)`
@@ -63,8 +63,8 @@ const CustomCard = styled(Card)`
 `;
 
 const CardHeader = styled.p`
-  font-size: 1.2rem;
-  font-weight: 700;
+  ${fonts.size.big};
+  ${fonts.weights.xBold};
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
     'Helvetica Neue', sans-serif;
   color: ${colors.text};
@@ -80,8 +80,8 @@ const CardHeader = styled.p`
 `;
 
 const CardDescription = styled.span`
-  font-size: 0.75rem;
-  font-weight: 400;
+  ${fonts.size.xSmall};
+  ${fonts.weights.light};
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
     'Helvetica Neue', sans-serif;
   opacity: 0.9;
@@ -96,14 +96,14 @@ const CardDescription = styled.span`
   -webkit-box-orient: vertical;
 `;
 
-const PlayBtn = styled(Button)`
+const PlayButton = styled(Button)`
   && {
     background-color: ${colors.primaryLight};
     border: none;
     color: ${colors.secondary};
     border-radius: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
+    ${fonts.size.xSmall};
+    ${fonts.weights.normal};
     width: 100%;
 
     &:hover {
@@ -112,19 +112,19 @@ const PlayBtn = styled(Button)`
   }
 `;
 
-const BtnContainer = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
   gap: 0.75rem;
 `;
 
-const MoreBtn = styled(Button)`
+const MoreButton = styled(Button)`
   && {
     background-color: ${colors.text};
     border: none;
     color: ${colors.secondary};
     border-radius: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
+    ${fonts.size.xSmall};
+    ${fonts.weights.normal};
     width: 100%;
 
     &:hover {
@@ -134,8 +134,8 @@ const MoreBtn = styled(Button)`
 `;
 
 const ButtonText = styled.span`
-  font-size: 0.75rem;
-  font-weight: 500;
+  ${fonts.size.xSmall};
+  ${fonts.weights.normal};
 `;
 
 const CustomTags = styled.span`
@@ -144,9 +144,9 @@ const CustomTags = styled.span`
   width: fit-content;
   padding: 0.2rem 0.5rem;
   height: 1.5rem;
-  font-size: 0.75rem;
+  ${fonts.size.xSmall};
+  ${fonts.weights.normal};
   border-radius: 2rem;
-  font-weight: 500;
 `;
 
 // --------TracksCard Component--------------
@@ -197,15 +197,15 @@ export function TracksCard({
       <If condition={!isEmpty(collectionName)} otherwise={<CardDescription>....Not Available....</CardDescription>}>
         <CardDescription>{collectionName}</CardDescription>
       </If>
-      <BtnContainer>
-        {/* <MoreBtn onClick={(e) => handleRedirectingToPage(e, trackId)}>More</MoreBtn> */}
-        <MoreBtn>More</MoreBtn>
-        <PlayBtn onClick={(e) => handlePlayPause(e)}>
+      <ButtonContainer>
+        {/* <MoreButton onClick={(e) => handleRedirectingToPage(e, trackId)}>More</MoreButton> */}
+        <MoreButton>More</MoreButton>
+        <PlayButton onClick={(e) => handlePlayPause(e)}>
           <If condition={!audioRef.current?.paused && audioRef.current?.src} otherwise={<ButtonText>Play</ButtonText>}>
             <ButtonText>Pause</ButtonText>
           </If>
-        </PlayBtn>
-      </BtnContainer>
+        </PlayButton>
+      </ButtonContainer>
       <audio ref={audioRef} src={previewUrl} data-testid="trackAudio"></audio>
     </CustomCard>
   );

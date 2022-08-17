@@ -19,8 +19,14 @@ const regular = () => css`
 const xRegular = () => css`
   font-size: 1.125rem;
 `;
+const xSmall = () => css`
+  font-size: 0.75rem;
+`;
 const small = () => css`
   font-size: 0.875rem;
+`;
+const medium = () => css`
+  font-size: 1rem;
 `;
 const big = () => css`
   font-size: 1.25rem;
@@ -34,14 +40,18 @@ const extraLarge = () => css`
 
 // weights
 const light = () => css`
-  font-weight: light;
+  font-weight: 400;
 `;
 const bold = () => css`
-  font-weight: bold;
+  font-weight: 600;
+`;
+
+const xBold = () => css`
+  font-weight: 700;
 `;
 
 const normal = () => css`
-  font-weight: normal;
+  font-weight: 500;
 `;
 
 // styles
@@ -69,7 +79,9 @@ export default {
   dynamicFontSize,
   size: {
     regular,
+    xSmall,
     small,
+    medium,
     big,
     large,
     extraLarge,
@@ -84,6 +96,7 @@ export default {
   weights: {
     light,
     bold,
+    xBold,
     normal
   }
 };

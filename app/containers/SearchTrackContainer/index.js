@@ -21,7 +21,7 @@ import searchTrackContainerSaga from './saga';
 import If from '@app/components/If/index';
 import For from '@app/components/For/index';
 import TracksCard from '@app/components/TracksCard/index';
-import { colors } from '@themes';
+import { colors, fonts } from '@themes';
 
 const MainContainer = styled.div`
   display: flex;
@@ -53,7 +53,6 @@ const { Search } = Input;
 const CustomSearch = styled(Search)`
   && {
     background-color: ${colors.text};
-    /* border-bottom: 1px solid ${colors.secondary}; */
     border-radius: 1rem;
 
     span.ant-input-wrapper {
@@ -61,11 +60,10 @@ const CustomSearch = styled(Search)`
         border: none;
         background-color: transparent;
         outline: none;
-        /* border-bottom: 1px solid ${colors.secondary}; */
         color: ${colors.secondary};
         letter-spacing: 0.2px;
         caret-color: ${colors.secondary};
-        font-size: 1rem;
+        ${fonts.size.medium};
         margin-left: 1rem;
 
         &::placeholder {

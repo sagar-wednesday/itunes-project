@@ -7,7 +7,7 @@ exports[`<SearchTrackContainer /> container tests should render and match the sn
       class="SearchTrackContainer__MainContainer-sc-71k6aw-0 kpKGmX"
     >
       <span
-        class="ant-input-group-wrapper ant-input-search SearchTrackContainer__CustomSearch-sc-71k6aw-3 gwbYxm"
+        class="ant-input-group-wrapper ant-input-search SearchTrackContainer__CustomSearch-sc-71k6aw-3 iIueUO"
         style="width: 400px;"
       >
         <span
