@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
@@ -21,6 +21,7 @@ import searchTrackContainerSaga from './saga';
 import If from '@app/components/If/index';
 import For from '@app/components/For/index';
 import TracksCard from '@app/components/TracksCard/index';
+import { colors, fonts } from '@themes';
 
 const MainContainer = styled.div`
   display: flex;
@@ -32,7 +33,8 @@ const TrackCardContainer = styled.div`
   && {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 100%;
+    gap: 2rem;
+    width: 88%;
     margin: 0 auto;
   }
 `;
@@ -42,18 +44,59 @@ const TrackCustomCard = styled(Card)`
     width: 100%;
     background: transparent;
     border: none;
+    margin-top: 3rem;
   }
 `;
 
 const { Search } = Input;
 
+const CustomSearch = styled(Search)`
+  && {
+    background-color: ${colors.text};
+    border-radius: 1rem;
+
+    span.ant-input-wrapper {
+      input.ant-input {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        color: ${colors.secondary};
+        letter-spacing: 0.2px;
+        caret-color: ${colors.secondary};
+        ${fonts.size.medium};
+        margin-left: 1rem;
+
+        &::placeholder {
+          color: ${colors.secondary};
+        }
+
+        &:focus {
+          outline: none !important;
+        }
+      }
+
+      span.ant-input-group-addon {
+        background: transparent;
+
+        button.ant-input-search-button {
+          background-color: transparent;
+          border: none;
+          color: ${colors.secondary} !important;
+          padding-bottom: 0.25rem;
+        }
+      }
+    }
+  }
+`;
+
 export function SearchTrackContainer({
   dispatchTracksResult,
   dispatchClearTracksResult,
   tracksData,
-  // tracksError,
   searchedTrackName
 }) {
+  const [currentTrack, setCurrentTrack] = useState(null);
+
   useEffect(() => {
     if (searchedTrackName && !tracksData?.tracks?.length) {
       dispatchTracksResult(searchedTrackName);
@@ -73,15 +116,36 @@ export function SearchTrackContainer({
 
   const debouncedHandleTrackSearch = useCallback(debounce(handleTrackSearch, 500), []);
 
+  const tracks = get(tracksData, 'results');
+
+  const handleGlobalClick = (ref) => {
+    setCurrentTrack(ref);
+    const trackPaused = currentTrack?.current?.paused;
+    if (!trackPaused && ref?.current.src !== currentTrack?.current.src) {
+      currentTrack?.current?.pause();
+    }
+  };
+
   const renderTracksList = () => {
-    const tracks = get(tracksData, 'results');
     return (
-      <If condition={!isEmpty(tracks)}>
+      <If condition={!isEmpty(tracks)} otherwise={null}>
         <TrackCustomCard>
           <For
             of={tracks}
             ParentComponent={TrackCardContainer}
-            renderItem={(item, index) => <TracksCard key={item.trackId} {...item} />}
+            renderItem={(item, index) => (
+              <TracksCard
+                key={index}
+                handleGlobalClick={handleGlobalClick}
+                collectionName={item.collectionName}
+                trackName={item.trackName}
+                imgUrl={item.artworkUrl100}
+                previewUrl={item.previewUrl}
+                tags={item.kind}
+                trackId={item.trackId}
+                {...item}
+              />
+            )}
           />
         </TrackCustomCard>
       </If>
@@ -90,12 +154,14 @@ export function SearchTrackContainer({
 
   return (
     <MainContainer>
-      <Search
+      <CustomSearch
+        type="primary"
         placeholder="search track"
         defaultValue={searchedTrackName}
         onChange={(e) => debouncedHandleTrackSearch(e?.target?.value)}
-        enterButton
         autoFocus
+        role="primary"
+        bordered={false}
         data-testid="search-bar"
         style={{ width: 400 }}
       />

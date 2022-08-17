@@ -6,8 +6,8 @@
  */
 
 const primary = '#5CDB95';
-const primaryLight = '#379683';
-const primaryDark = '#8EE4AF';
+const primaryDark = '#379683';
+const primaryLight = '#8EE4AF';
 const secondary = '#05386B';
 const text = '#EDF5E1';
 const success = '#28a745';

@@ -3,16 +3,16 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="Header__StyledHeader-wp2jxc-0 lnXqb"
+    class="Header__StyledHeader-wp2jxc-0 jbgefc"
     data-testid="header"
   >
     <img
       alt="logo"
-      class="Header__Logo-wp2jxc-1 SRvwA"
+      class="Header__Logo-wp2jxc-1 hfVwon"
       src="IMAGE_MOCK"
     />
     <p
-      class="Header__Title-wp2jxc-2 bkjpmc"
+      class="Header__Title-wp2jxc-2 cLyDmI"
     >
       Wednesday Solutions
     </p>
