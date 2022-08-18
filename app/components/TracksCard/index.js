@@ -160,7 +160,7 @@ export function TracksCard({
   handleGlobalClick,
   tags,
   trackId,
-  moreButton,
+  isMoreButtonPresent,
   width,
   shadow
 }) {
@@ -185,7 +185,7 @@ export function TracksCard({
     }
   };
 
-  const handleRedirectingToPage = (e, trackId) => {
+  const handleRedirectingToTrackDetail = (e, trackId) => {
     e.preventDefault();
     history.push(`/track/${trackId}`);
   };
@@ -202,8 +202,8 @@ export function TracksCard({
         <CardDescription>{collectionName}</CardDescription>
       </If>
       <ButtonContainer>
-        <If condition={moreButton}>
-          <MoreButton onClick={(e) => handleRedirectingToPage(e, trackId)}>More</MoreButton>
+        <If condition={isMoreButtonPresent}>
+          <MoreButton onClick={(e) => handleRedirectingToTrackDetail(e, trackId)}>More</MoreButton>
         </If>
         <PlayButton onClick={(e) => handlePlayPause(e)}>
           <If condition={!audioRef.current?.paused && audioRef.current?.src} otherwise={<ButtonText>Play</ButtonText>}>
@@ -224,7 +224,7 @@ TracksCard.propTypes = {
   handleGlobalClick: PropTypes.func,
   tags: PropTypes.string,
   trackId: PropTypes.number,
-  moreButton: PropTypes.bool,
+  isMoreButtonPresent: PropTypes.bool,
   shadow: PropTypes.bool,
   width: PropTypes.string
 };

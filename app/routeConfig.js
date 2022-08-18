@@ -1,7 +1,7 @@
 import NotFound from '@containers/NotFoundPage/Loadable';
 import routeConstants from '@utils/routeConstants';
-import SearchTrackContainer from '@containers/SearchTrackContainer/Loadable';
-import TrackDetailsContainer from '@containers/SearchTrackContainer/TrackDetailsContainer/index';
+import SearchTrackContainer from '@app/containers/TrackContainer/Loadable';
+import TrackDetailsContainer from '@app/containers/TrackContainer/TrackDetailsContainer/index';
 
 export const routeConfig = {
   tracks: {

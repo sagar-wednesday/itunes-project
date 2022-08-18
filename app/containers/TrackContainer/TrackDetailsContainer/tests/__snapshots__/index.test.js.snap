@@ -4,10 +4,10 @@ exports[`<TrackDetailsContainer /> container tests should render and match the s
 <body>
   <div>
     <div
-      class="TrackDetailsContainer__Container-pls4d3-0 lnzYEM"
+      class="TrackDetailsContainer__Container-gquu6h-0 cXbAcY"
     >
       <div
-        class="TrackDetailsContainer__CustomDetailsContainer-pls4d3-1 gsqzKH"
+        class="TrackDetailsContainer__CustomDetailsContainer-gquu6h-1 hcOALb"
       >
         <div
           class="ant-card ant-card-bordered TracksCard__CustomCard-sc-7b0elv-0 bqeuPE"
@@ -93,32 +93,32 @@ exports[`<TrackDetailsContainer /> container tests should render and match the s
           </div>
         </div>
         <div
-          class="TrackDetailsContainer__CustomExtraDetailsContainer-pls4d3-2 foBORh"
+          class="TrackDetailsContainer__CustomTrackExtraDetailsContainer-gquu6h-2 dpnFIq"
         >
           <p
-            class="TrackDetailsContainer__CustomExtraDetails-pls4d3-3 hOHWiK"
+            class="TrackDetailsContainer__CustomTrackExtraDetails-gquu6h-3 gQqRKp"
           >
             <span
-              class="TrackDetailsContainer__BoldText-pls4d3-4 kBOTVR"
+              class="TrackDetailsContainer__BoldText-gquu6h-4 cJiIeZ"
             >
               Country: 
             </span>
           </p>
           <p
-            class="TrackDetailsContainer__CustomExtraDetails-pls4d3-3 hOHWiK"
+            class="TrackDetailsContainer__CustomTrackExtraDetails-gquu6h-3 gQqRKp"
           >
             <span
-              class="TrackDetailsContainer__BoldText-pls4d3-4 kBOTVR"
+              class="TrackDetailsContainer__BoldText-gquu6h-4 cJiIeZ"
             >
               Artist Name: 
             </span>
             Sia
           </p>
           <p
-            class="TrackDetailsContainer__CustomExtraDetails-pls4d3-3 hOHWiK"
+            class="TrackDetailsContainer__CustomTrackExtraDetails-gquu6h-3 gQqRKp"
           >
             <span
-              class="TrackDetailsContainer__BoldText-pls4d3-4 kBOTVR"
+              class="TrackDetailsContainer__BoldText-gquu6h-4 cJiIeZ"
             >
               Genre: 
             </span>

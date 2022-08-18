@@ -32,14 +32,14 @@ const CustomDetailsContainer = styled.div`
   gap: 2rem;
 `;
 
-const CustomExtraDetailsContainer = styled.div`
+const CustomTrackExtraDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
 `;
 
-const CustomExtraDetails = styled.p`
+const CustomTrackExtraDetails = styled.p`
   font-size: 0.75rem;
   color: ${colors.text};
   opacity: 0.9;
@@ -68,20 +68,20 @@ export function TrackDetailsContainer({ dispatchGetTrackDetails, trackDetails, t
           previewUrl={trackDetails?.previewUrl}
           tags={trackDetails?.kind}
         />
-        <CustomExtraDetailsContainer>
-          <CustomExtraDetails>
+        <CustomTrackExtraDetailsContainer>
+          <CustomTrackExtraDetails>
             <BoldText>Country: </BoldText>
             {trackDetails?.country}
-          </CustomExtraDetails>
-          <CustomExtraDetails>
+          </CustomTrackExtraDetails>
+          <CustomTrackExtraDetails>
             <BoldText>Artist Name: </BoldText>
             {trackDetails?.artistName}
-          </CustomExtraDetails>
-          <CustomExtraDetails>
+          </CustomTrackExtraDetails>
+          <CustomTrackExtraDetails>
             <BoldText>Genre: </BoldText>
             {trackDetails?.primaryGenreName}
-          </CustomExtraDetails>
-        </CustomExtraDetailsContainer>
+          </CustomTrackExtraDetails>
+        </CustomTrackExtraDetailsContainer>
       </CustomDetailsContainer>
     </Container>
   );

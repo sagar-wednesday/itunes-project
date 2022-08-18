@@ -140,7 +140,7 @@ export function SearchTrackContainer({
                 previewUrl={item.previewUrl}
                 tags={item.kind}
                 trackId={item.trackId}
-                moreButton
+                isMoreButtonPresent
                 shadow
                 {...item}
               />

@@ -18,9 +18,7 @@ export function* getItunesTracks(action) {
 }
 
 export function* getItunesTrackDetails(action) {
-  let tracksData;
-
-  tracksData = yield select(selectTracksData());
+  const tracksData = yield select(selectTracksData());
 
   const trackItem = tracksData?.results?.find((track) => track?.trackId.toString() === action.trackId);
 
