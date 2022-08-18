@@ -3,15 +3,17 @@
  */
 
 import { takeLatest, call, put } from 'redux-saga/effects';
-import searchTrackContainerSaga, { getItunesTracks } from '../saga';
+import searchTrackContainerSaga, { getItunesTracks, getItunesTrackDetails } from '../saga';
 import { searchTrackContainerTypes } from '../reducer';
-import { getTracks } from '@app/services/repoApi';
+import { getTracks, getTrackDetails } from '@app/services/repoApi';
 import { apiResponseGenerator } from '@app/utils/testUtils';
 
 describe('SearchTrackContainer saga tests', () => {
   const generator = searchTrackContainerSaga();
   let trackName = '';
+  let trackId = '18556408';
   let getITunesTracksGenerator = getItunesTracks({ trackName });
+  let getTrackDetailsGenerator = getItunesTrackDetails({ trackId });
 
   it('should start task to watch for REQUEST_GET_ITUNES_TRACKS action', () => {
     expect(generator.next().value).toEqual(
@@ -47,6 +49,49 @@ describe('SearchTrackContainer saga tests', () => {
       put({
         type: searchTrackContainerTypes.FAILURE_GET_ITUNES_TRACKS,
         error: errorResponse
+      })
+    );
+  });
+
+  it('should start task to watch for REQUEST_GET_TRACK_DETAILS', () => {
+    expect(generator.next().value).toEqual(
+      takeLatest(searchTrackContainerTypes.REQUEST_GET_TRACK_DETAILS, getItunesTrackDetails)
+    );
+  });
+
+  it('should ensure that the action SUCCESS_GET_TRACK_DETAILS is dispatched when the api call succeeds', () => {
+    getTrackDetailsGenerator = getItunesTrackDetails({ trackId });
+    getTrackDetailsGenerator.next().value;
+    const resTwo = getTrackDetailsGenerator.next().value;
+
+    expect(resTwo).toEqual(call(getTrackDetails, trackId));
+
+    const data = { results: [{ trackId }] };
+
+    expect(getTrackDetailsGenerator.next(apiResponseGenerator(true, data)).value).toEqual(
+      put({
+        type: searchTrackContainerTypes.SUCCESS_GET_TRACK_DETAILS,
+        data: data.results[0]
+      })
+    );
+  });
+
+  it('should ensure that the action FAILURE_GET_TRACK_DETAILS is dispatched when the api call fails', () => {
+    getTrackDetailsGenerator = getItunesTrackDetails({ trackId });
+    getTrackDetailsGenerator.next().value;
+    const resTwo = getTrackDetailsGenerator.next().value;
+
+    expect(resTwo).toEqual(call(getTrackDetails, trackId));
+    const errorResponse = {
+      originalError: {
+        message: 'There is an error while fetching the tracks details'
+      }
+    };
+
+    expect(getTrackDetailsGenerator.next(apiResponseGenerator(false, errorResponse)).value).toEqual(
+      put({
+        type: searchTrackContainerTypes.FAILURE_GET_TRACK_DETAILS,
+        error: errorResponse.originalError.message
       })
     );
   });

@@ -101,9 +101,6 @@ export function SearchTrackContainer({
     if (searchedTrackName && !tracksData?.tracks?.length) {
       dispatchTracksResult(searchedTrackName);
     }
-    return () => {
-      dispatchClearTracksResult();
-    };
   }, []);
 
   const handleTrackSearch = (trackName) => {
@@ -143,6 +140,8 @@ export function SearchTrackContainer({
                 previewUrl={item.previewUrl}
                 tags={item.kind}
                 trackId={item.trackId}
+                moreButton
+                shadow
                 {...item}
               />
             )}

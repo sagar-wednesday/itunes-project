@@ -10,14 +10,20 @@ import { createActions } from 'reduxsauce';
 export const initialState = {
   tracksData: {},
   searchedTrackName: null,
-  tracksError: null
+  tracksError: null,
+  trackId: null,
+  trackDetails: null,
+  trackDetailsError: null
 };
 
 export const { Types: searchTrackContainerTypes, Creators: searchTrackContainerCreators } = createActions({
   requestGetItunesTracks: ['trackName'],
   successGetItunesTracks: ['data'],
   failureGetItunesTracks: ['error'],
-  requestClearItunesTracks: {}
+  requestClearItunesTracks: {},
+  requestGetTrackDetails: ['trackId'],
+  successGetTrackDetails: ['data'],
+  failureGetTrackDetails: ['error']
 });
 
 export const searchTrackContainerReducer = (state = initialState, action) =>
@@ -36,6 +42,18 @@ export const searchTrackContainerReducer = (state = initialState, action) =>
         draft.tracksData = {};
         draft.searchedTrackName = null;
         draft.tracksError = null;
+        break;
+      case searchTrackContainerTypes.REQUEST_GET_TRACK_DETAILS:
+        draft.trackDetails = null;
+        draft.trackDetailsError = null;
+        draft.trackId = action.trackId;
+        break;
+      case searchTrackContainerTypes.SUCCESS_GET_TRACK_DETAILS:
+        draft.trackDetailsError = null;
+        draft.trackDetails = action.data;
+        break;
+      case searchTrackContainerTypes.FAILURE_GET_TRACK_DETAILS:
+        draft.trackDetailsError = action.error;
         break;
     }
   });

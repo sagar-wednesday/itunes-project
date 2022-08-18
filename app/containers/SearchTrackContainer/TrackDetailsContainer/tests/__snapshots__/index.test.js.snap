@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TrackDetailsContainer /> container tests should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="TrackDetailsContainer__Container-pls4d3-0 lnzYEM"
+    >
+      <div
+        class="TrackDetailsContainer__CustomDetailsContainer-pls4d3-1 gsqzKH"
+      >
+        <div
+          class="ant-card ant-card-bordered TracksCard__CustomCard-sc-7b0elv-0 bqeuPE"
+          data-testid="tracks-card"
+          width="15rem"
+        >
+          <div
+            class="ant-card-cover"
+          >
+            <div
+              class="ant-image"
+            >
+              <img
+                alt="image"
+                class="ant-image-img"
+              />
+              <div
+                class="ant-image-mask"
+              >
+                <div
+                  class="ant-image-mask-info"
+                >
+                  <span
+                    aria-label="eye"
+                    class="anticon anticon-eye"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="eye"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                      />
+                    </svg>
+                  </span>
+                  Preview
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-card-body"
+          >
+            <span
+              class="TracksCard__CustomTags-sc-7b0elv-7 IhKtr"
+            >
+              ....
+            </span>
+            <p
+              class="TracksCard__CardHeader-sc-7b0elv-1 gRraVB"
+            >
+              ....No Title....
+            </p>
+            <span
+              class="TracksCard__CardDescription-sc-7b0elv-2 dMBnzX"
+            >
+              abc
+            </span>
+            <div
+              class="TracksCard__ButtonContainer-sc-7b0elv-4 kKzPkC"
+            >
+              <button
+                class="ant-btn TracksCard__PlayButton-sc-7b0elv-3 egOMOc"
+                type="button"
+              >
+                <span
+                  class="TracksCard__ButtonText-sc-7b0elv-6 crDLcF"
+                >
+                  Play
+                </span>
+              </button>
+            </div>
+            <audio
+              data-testid="trackAudio"
+              src="https://bcw.mp3"
+            />
+          </div>
+        </div>
+        <div
+          class="TrackDetailsContainer__CustomExtraDetailsContainer-pls4d3-2 foBORh"
+        >
+          <p
+            class="TrackDetailsContainer__CustomExtraDetails-pls4d3-3 hOHWiK"
+          >
+            <span
+              class="TrackDetailsContainer__BoldText-pls4d3-4 kBOTVR"
+            >
+              Country: 
+            </span>
+          </p>
+          <p
+            class="TrackDetailsContainer__CustomExtraDetails-pls4d3-3 hOHWiK"
+          >
+            <span
+              class="TrackDetailsContainer__BoldText-pls4d3-4 kBOTVR"
+            >
+              Artist Name: 
+            </span>
+            Sia
+          </p>
+          <p
+            class="TrackDetailsContainer__CustomExtraDetails-pls4d3-3 hOHWiK"
+          >
+            <span
+              class="TrackDetailsContainer__BoldText-pls4d3-4 kBOTVR"
+            >
+              Genre: 
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
