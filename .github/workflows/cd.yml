@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: setup git token
         uses: fregante/setup-git-token@v1
@@ -28,31 +28,31 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      # - name: Build
-      #   run: yarn build
+      - name: Build
+        run: yarn build
 
-      # - name: AWS S3 Deploy
-      #   uses: jakejarvis/s3-sync-action@v0.5.0
-      #   with:
-      #     args: --acl public-read --follow-symlinks
-      #   env:
-      #     SOURCE_DIR: './build/'
-
-      - name: Set branch name
-        id: vars
-        run: echo ::set-output name=stage::${GITHUB_REF#refs/*/}
-
-      - name: Create badges
-        run: yarn run test:badges
-
-      - name: Commit badges
-        uses: EndBug/add-and-commit@v7
+      - name: AWS S3 Deploy
+        uses: jakejarvis/s3-sync-action@v0.5.0
         with:
-          author_name: Gitflow
-          author_email: git@wednesday.is
-          message: 'Update badges'
-          add: 'badges/'
-          push: false
+          args: --acl public-read --follow-symlinks
+        env:
+          SOURCE_DIR: './build/'
+
+      # - name: Set branch name
+      #   id: vars
+      #   run: echo ::set-output name=stage::${GITHUB_REF#refs/*/}
+
+      # - name: Create badges
+      #   run: yarn run test:badges
+
+      # - name: Commit badges
+      #   uses: EndBug/add-and-commit@v7
+      #   with:
+      #     author_name: Gitflow
+      #     author_email: git@wednesday.is
+      #     message: 'Update badges'
+      #     add: 'badges/'
+      #     push: false
 
       # - name: Invalidate CloudFront
       #   uses: chetan/invalidate-cloudfront-action@v2

@@ -52,5 +52,5 @@ jobs:
           SOURCE_DIR: './uat/'
           DEST_DIR: ''
 
-      - name: Clear Cloudfront Cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION }} --paths "/*"
+      # - name: Clear Cloudfront Cache
+      #   run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION }} --paths "/*"
