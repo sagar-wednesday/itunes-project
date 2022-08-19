@@ -4,7 +4,7 @@
 
 import { combineReducers } from 'redux';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import searchTrackContainerReducer from 'containers/SearchTrackContainer/reducer';
+import searchTrackContainerReducer from '@app/containers/TrackContainer/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers

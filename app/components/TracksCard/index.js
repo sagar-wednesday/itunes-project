@@ -11,17 +11,18 @@ import { Card, Image, Button } from 'antd';
 import { isEmpty } from 'lodash';
 import If from '@components/If';
 import { colors, fonts } from '@themes';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const CustomCard = styled(Card)`
   && {
     border-radius: 0.5rem;
     padding: 0.5rem;
-    width: 15rem;
+    width: ${(props) => (props.width ? props.width : '15rem')};
     height: 22rem;
     border: none;
     background-color: ${colors.secondary};
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: ${(props) =>
+      props.shadow ? '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)' : null};
 
     div.ant-card-cover {
       width: 100%;
@@ -151,10 +152,21 @@ const CustomTags = styled.span`
 
 // --------TracksCard Component--------------
 
-export function TracksCard({ collectionName, trackName, imgUrl, previewUrl, handleGlobalClick, tags, trackId }) {
+export function TracksCard({
+  collectionName,
+  trackName,
+  imgUrl,
+  previewUrl,
+  handleGlobalClick,
+  tags,
+  trackId,
+  isMoreButtonPresent,
+  width,
+  shadow
+}) {
   const audioRef = useRef(null);
   const [playTrack, setPlayTrack] = useState(false);
-  // const history = useHistory();
+  const history = useHistory();
 
   const handlePlayPause = (e) => {
     e.preventDefault();
@@ -173,13 +185,13 @@ export function TracksCard({ collectionName, trackName, imgUrl, previewUrl, hand
     }
   };
 
-  // const handleRedirectingToPage = (e, trackId) => {
-  //   e.preventDefault();
-  //   history.push(`/track/${trackId}`);
-  // };
+  const handleRedirectingToTrackDetail = (e, trackId) => {
+    e.preventDefault();
+    history.push(`/track/${trackId}`);
+  };
 
   return (
-    <CustomCard data-testid="tracks-card" cover={<Image alt="image" src={imgUrl} />}>
+    <CustomCard width={width} shadow={shadow} data-testid="tracks-card" cover={<Image alt="image" src={imgUrl} />}>
       <If condition={!isEmpty(tags)} otherwise={<CustomTags>....</CustomTags>}>
         <CustomTags>{tags}</CustomTags>
       </If>
@@ -190,8 +202,9 @@ export function TracksCard({ collectionName, trackName, imgUrl, previewUrl, hand
         <CardDescription>{collectionName}</CardDescription>
       </If>
       <ButtonContainer>
-        {/* <MoreButton onClick={(e) => handleRedirectingToPage(e, trackId)}>More</MoreButton> */}
-        <MoreButton>More</MoreButton>
+        <If condition={isMoreButtonPresent}>
+          <MoreButton onClick={(e) => handleRedirectingToTrackDetail(e, trackId)}>More</MoreButton>
+        </If>
         <PlayButton onClick={(e) => handlePlayPause(e)}>
           <If condition={!audioRef.current?.paused && audioRef.current?.src} otherwise={<ButtonText>Play</ButtonText>}>
             <ButtonText>Pause</ButtonText>
@@ -210,7 +223,10 @@ TracksCard.propTypes = {
   previewUrl: PropTypes.string,
   handleGlobalClick: PropTypes.func,
   tags: PropTypes.string,
-  trackId: PropTypes.number
+  trackId: PropTypes.number,
+  isMoreButtonPresent: PropTypes.bool,
+  shadow: PropTypes.bool,
+  width: PropTypes.string
 };
 
 export default TracksCard;

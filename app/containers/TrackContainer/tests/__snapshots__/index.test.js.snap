@@ -4,10 +4,10 @@ exports[`<SearchTrackContainer /> container tests should render and match the sn
 <body>
   <div>
     <div
-      class="SearchTrackContainer__MainContainer-sc-71k6aw-0 kpKGmX"
+      class="TrackContainer__MainContainer-sc-2rk64n-0 jsDcT"
     >
       <span
-        class="ant-input-group-wrapper ant-input-search SearchTrackContainer__CustomSearch-sc-71k6aw-3 iIueUO"
+        class="ant-input-group-wrapper ant-input-search TrackContainer__CustomSearch-sc-2rk64n-3 cxERQm"
         style="width: 400px;"
       >
         <span
