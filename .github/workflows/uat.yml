@@ -18,14 +18,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Get branch name
         id: vars
         run: echo ::set-output name=branch::${{ github.event.pull_request.head.ref }}
 
       - name: Install Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
@@ -43,8 +43,10 @@ jobs:
         env:
           SOURCE_DIR: './build/'
           DEST_DIR: ${{ steps.vars.outputs.branch }}
+
       - name: List UAT branches in fallback page
         run: yarn ls-uat-branches
+
       - name: Deploy S3 fallback page
         uses: jakejarvis/s3-sync-action@v0.5.0
         with:
