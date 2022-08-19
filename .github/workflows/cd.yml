@@ -41,5 +41,5 @@ jobs:
         env:
           SOURCE_DIR: './build/'
 
-      - name: Clear Cloudfront Cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION }} --paths "/*"
+      # - name: Clear Cloudfront Cache
+      #   run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION }} --paths "/*"
