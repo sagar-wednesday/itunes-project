@@ -1,6 +1,6 @@
 name: AWS S3 Static Site Deploy
 on:
-  push:
+  pull_request:
     branches: [master]
 jobs:
   build_and_aws_deploy:
@@ -44,9 +44,6 @@ jobs:
           SOURCE_DIR: './build/'
           DEST_DIR: ${{ steps.vars.outputs.branch }}
 
-      - name: List UAT branches in fallback page
-        run: yarn ls-uat-branches
-
       - name: Deploy S3 fallback page
         uses: jakejarvis/s3-sync-action@v0.5.0
         with:
@@ -54,3 +51,6 @@ jobs:
         env:
           SOURCE_DIR: './uat/'
           DEST_DIR: ''
+
+      - name: Clear Cloudfront Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION }} --paths "/*"
