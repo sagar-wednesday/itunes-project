@@ -9,10 +9,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Get branch name
-        id: vars
-        run: echo ::set-output name=branch::${{ github.event.pull_request.head.ref }}
-
       - name: setup git token
         uses: fregante/setup-git-token@v1
         with:
