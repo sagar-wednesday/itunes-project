@@ -4,6 +4,7 @@ on:
     branches: [master]
 jobs:
   build-and-deploy:
+    name: Deploy Prod to S3
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,13 +19,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+        uses: actions/checkout@v2
 
-      - name: setup git token
-        uses: fregante/setup-git-token@v1
+      - name: Install Node.js
+      - uses: actions/setup-node@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+
+      # - name: setup git token
+      #   uses: fregante/setup-git-token@v1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
         run: yarn
@@ -38,6 +44,7 @@ jobs:
           args: --acl public-read --follow-symlinks
         env:
           SOURCE_DIR: './build/'
+          DEST_DIR: ''
 
       # - name: Clear Cloudfront Cache
       #   run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION }} --paths "/*"

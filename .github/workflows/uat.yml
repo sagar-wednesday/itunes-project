@@ -4,7 +4,7 @@ on:
     branches: [master]
 jobs:
   build_and_aws_deploy:
-    name: Deploy to AWS
+    name: Deploy to AWS S3
     runs-on: ubuntu-latest
     strategy:
       matrix:
