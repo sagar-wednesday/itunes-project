@@ -23,9 +23,9 @@ jobs:
         with:
           node-version: 14
 
-      - name: Get branch name
-        id: vars
-        run: echo ::set-output name=branch::${{ github.event.pull_request.head.ref }}
+      # - name: Get branch name
+      #   id: vars
+      #   run: echo ::set-output name=branch::${{ github.event.pull_request.head.ref }}
 
       - name: Install Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
