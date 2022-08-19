@@ -5,9 +5,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     node-version: [16.x]
+    strategy:
+      matrix:
+        node-version: [16.x]
     env:
       SOURCE_DIR: './build/'
       AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
