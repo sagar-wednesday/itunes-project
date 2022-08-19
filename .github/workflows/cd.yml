@@ -1,6 +1,6 @@
-name: React Template CD
+name: ITUNES React CD
 on:
-  push:
+  pull_request:
     branches: [master]
 jobs:
   build-and-deploy:
@@ -8,6 +8,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Get branch name
+        id: vars
+        run: echo ::set-output name=branch::${{ github.event.pull_request.head.ref }}
 
       - name: setup git token
         uses: fregante/setup-git-token@v1
